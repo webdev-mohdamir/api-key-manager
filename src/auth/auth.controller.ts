@@ -4,6 +4,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import type { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -13,6 +14,7 @@ export class AuthController {
     ) {}
 
     @Post("/register")
+    @Public()
     async register(@Body() registerDto: RegisterDto) {
         const user = await this.authService.register(registerDto);
         
@@ -23,6 +25,7 @@ export class AuthController {
     }
 
     @Post('/login')
+    @Public()
     async login(
         @Body() loginDto: LoginDto,
         @Res({ passthrough: true }) res: Response,
@@ -44,6 +47,7 @@ export class AuthController {
     }
 
     @Post('/refresh')
+    @Public()
     async refresh(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
         const refresh_token = req.cookies.refresh_token as string;
 
