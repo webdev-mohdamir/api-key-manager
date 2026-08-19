@@ -3,6 +3,7 @@ import { DataService } from './data.service';
 import { ApiKeyGuard } from 'src/api-key/guard/api-key.guard';
 import type { Request } from 'express';
 import { Public } from 'src/common/decorators/public.decorator';
+import { RateLimitGuard } from 'src/common/guards/rate-limit.guard';
 
 @Controller('data')
 export class DataController {
@@ -12,7 +13,7 @@ export class DataController {
 
     @Get("ping")
     @Public()
-    @UseGuards(ApiKeyGuard)
+    @UseGuards(ApiKeyGuard, RateLimitGuard)
     ping(@Req() req: Request) {
         return {
             message: 'pong',
