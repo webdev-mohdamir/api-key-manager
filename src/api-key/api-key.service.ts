@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
@@ -9,20 +9,36 @@ export class ApiKeyService {
         private readonly prisma: PrismaService,
     ) {}
 
+    public parseKey(rawKey: string): {keyId: string, keySecret: string} {
+        const parts = rawKey.split('_');
+        
+        if (parts.length !== 3 || parts[0] !== 'ak') {
+            throw new UnauthorizedException('Invalid API key format');
+        }
+        
+        const [, keyId, keySecret] = parts;
+        return { keyId, keySecret };
+    }
+
     async create({userId, label}: {userId: string, label: string}): Promise<{
         id: string,
         label: string,
         key: string
     }> {
 
-        const rawKey = crypto.randomBytes(32).toString('hex');
-        const fullKey = `ak_${rawKey}`;
-        const keyPreview = `ak_...${fullKey.slice(-4)}`; // or however you want to format it
-        const keyHash = await bcrypt.hash(fullKey, 10);
+        
+        const keyId = crypto.randomBytes(12).toString('hex');
+        const keySecret = crypto.randomBytes(32).toString('hex');
+
+        const fullKey = `ak_${keyId}_${keySecret}`;
+        const keyPreview = `ak_...${fullKey.slice(-4)}`;
+
+        const keyHash = await bcrypt.hash(keySecret, 10);
 
         const apiKey = await this.prisma.apiKey.create({
             data: {
                 label,
+                keyId,
                 keyHash,
                 keyPreview,
                 user: {

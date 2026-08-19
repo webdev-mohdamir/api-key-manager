@@ -101,6 +101,7 @@ export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[k
 export const ApiKeyScalarFieldEnum = {
   id: 'id',
   label: 'label',
+  keyId: 'keyId',
   keyHash: 'keyHash',
   createdAt: 'createdAt',
   isActive: 'isActive',

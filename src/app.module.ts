@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { ApiKeyModule } from './api-key/api-key.module';
+import { DataModule } from './data/data.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { ApiKeyModule } from './api-key/api-key.module';
       validationSchema: envValidationSchema
     }),
     JwtModule.register({}),
-    PrismaModule, AuthModule, ApiKeyModule],
+    PrismaModule, AuthModule, ApiKeyModule, DataModule],
   controllers: [AppController],
   providers: [
     {

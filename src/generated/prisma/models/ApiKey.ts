@@ -27,6 +27,7 @@ export type AggregateApiKey = {
 export type ApiKeyMinAggregateOutputType = {
   id: string | null
   label: string | null
+  keyId: string | null
   keyHash: string | null
   createdAt: Date | null
   isActive: boolean | null
@@ -38,6 +39,7 @@ export type ApiKeyMinAggregateOutputType = {
 export type ApiKeyMaxAggregateOutputType = {
   id: string | null
   label: string | null
+  keyId: string | null
   keyHash: string | null
   createdAt: Date | null
   isActive: boolean | null
@@ -49,6 +51,7 @@ export type ApiKeyMaxAggregateOutputType = {
 export type ApiKeyCountAggregateOutputType = {
   id: number
   label: number
+  keyId: number
   keyHash: number
   createdAt: number
   isActive: number
@@ -62,6 +65,7 @@ export type ApiKeyCountAggregateOutputType = {
 export type ApiKeyMinAggregateInputType = {
   id?: true
   label?: true
+  keyId?: true
   keyHash?: true
   createdAt?: true
   isActive?: true
@@ -73,6 +77,7 @@ export type ApiKeyMinAggregateInputType = {
 export type ApiKeyMaxAggregateInputType = {
   id?: true
   label?: true
+  keyId?: true
   keyHash?: true
   createdAt?: true
   isActive?: true
@@ -84,6 +89,7 @@ export type ApiKeyMaxAggregateInputType = {
 export type ApiKeyCountAggregateInputType = {
   id?: true
   label?: true
+  keyId?: true
   keyHash?: true
   createdAt?: true
   isActive?: true
@@ -168,6 +174,7 @@ export type ApiKeyGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type ApiKeyGroupByOutputType = {
   id: string
   label: string
+  keyId: string
   keyHash: string
   createdAt: Date
   isActive: boolean
@@ -200,6 +207,7 @@ export type ApiKeyWhereInput = {
   NOT?: Prisma.ApiKeyWhereInput | Prisma.ApiKeyWhereInput[]
   id?: Prisma.StringFilter<"ApiKey"> | string
   label?: Prisma.StringFilter<"ApiKey"> | string
+  keyId?: Prisma.StringFilter<"ApiKey"> | string
   keyHash?: Prisma.StringFilter<"ApiKey"> | string
   createdAt?: Prisma.DateTimeFilter<"ApiKey"> | Date | string
   isActive?: Prisma.BoolFilter<"ApiKey"> | boolean
@@ -213,6 +221,7 @@ export type ApiKeyWhereInput = {
 export type ApiKeyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   label?: Prisma.SortOrder
+  keyId?: Prisma.SortOrder
   keyHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -225,6 +234,7 @@ export type ApiKeyOrderByWithRelationInput = {
 
 export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  keyId?: string
   keyHash?: string
   AND?: Prisma.ApiKeyWhereInput | Prisma.ApiKeyWhereInput[]
   OR?: Prisma.ApiKeyWhereInput[]
@@ -237,11 +247,12 @@ export type ApiKeyWhereUniqueInput = Prisma.AtLeast<{
   userId?: Prisma.StringFilter<"ApiKey"> | string
   usageLogs?: Prisma.UsageLogListRelationFilter
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "id" | "keyHash">
+}, "id" | "keyId" | "keyHash">
 
 export type ApiKeyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   label?: Prisma.SortOrder
+  keyId?: Prisma.SortOrder
   keyHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -259,6 +270,7 @@ export type ApiKeyScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ApiKeyScalarWhereWithAggregatesInput | Prisma.ApiKeyScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ApiKey"> | string
   label?: Prisma.StringWithAggregatesFilter<"ApiKey"> | string
+  keyId?: Prisma.StringWithAggregatesFilter<"ApiKey"> | string
   keyHash?: Prisma.StringWithAggregatesFilter<"ApiKey"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ApiKey"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"ApiKey"> | boolean
@@ -270,6 +282,7 @@ export type ApiKeyScalarWhereWithAggregatesInput = {
 export type ApiKeyCreateInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -282,6 +295,7 @@ export type ApiKeyCreateInput = {
 export type ApiKeyUncheckedCreateInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -294,6 +308,7 @@ export type ApiKeyUncheckedCreateInput = {
 export type ApiKeyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -306,6 +321,7 @@ export type ApiKeyUpdateInput = {
 export type ApiKeyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -318,6 +334,7 @@ export type ApiKeyUncheckedUpdateInput = {
 export type ApiKeyCreateManyInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -329,6 +346,7 @@ export type ApiKeyCreateManyInput = {
 export type ApiKeyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -339,6 +357,7 @@ export type ApiKeyUpdateManyMutationInput = {
 export type ApiKeyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -360,6 +379,7 @@ export type ApiKeyOrderByRelationAggregateInput = {
 export type ApiKeyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   label?: Prisma.SortOrder
+  keyId?: Prisma.SortOrder
   keyHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -371,6 +391,7 @@ export type ApiKeyCountOrderByAggregateInput = {
 export type ApiKeyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   label?: Prisma.SortOrder
+  keyId?: Prisma.SortOrder
   keyHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -382,6 +403,7 @@ export type ApiKeyMaxOrderByAggregateInput = {
 export type ApiKeyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   label?: Prisma.SortOrder
+  keyId?: Prisma.SortOrder
   keyHash?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
@@ -456,6 +478,7 @@ export type ApiKeyUpdateOneWithoutUsageLogsNestedInput = {
 export type ApiKeyCreateWithoutUserInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -467,6 +490,7 @@ export type ApiKeyCreateWithoutUserInput = {
 export type ApiKeyUncheckedCreateWithoutUserInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -507,6 +531,7 @@ export type ApiKeyScalarWhereInput = {
   NOT?: Prisma.ApiKeyScalarWhereInput | Prisma.ApiKeyScalarWhereInput[]
   id?: Prisma.StringFilter<"ApiKey"> | string
   label?: Prisma.StringFilter<"ApiKey"> | string
+  keyId?: Prisma.StringFilter<"ApiKey"> | string
   keyHash?: Prisma.StringFilter<"ApiKey"> | string
   createdAt?: Prisma.DateTimeFilter<"ApiKey"> | Date | string
   isActive?: Prisma.BoolFilter<"ApiKey"> | boolean
@@ -518,6 +543,7 @@ export type ApiKeyScalarWhereInput = {
 export type ApiKeyCreateWithoutUsageLogsInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -529,6 +555,7 @@ export type ApiKeyCreateWithoutUsageLogsInput = {
 export type ApiKeyUncheckedCreateWithoutUsageLogsInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -556,6 +583,7 @@ export type ApiKeyUpdateToOneWithWhereWithoutUsageLogsInput = {
 export type ApiKeyUpdateWithoutUsageLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -567,6 +595,7 @@ export type ApiKeyUpdateWithoutUsageLogsInput = {
 export type ApiKeyUncheckedUpdateWithoutUsageLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -578,6 +607,7 @@ export type ApiKeyUncheckedUpdateWithoutUsageLogsInput = {
 export type ApiKeyCreateManyUserInput = {
   id?: string
   label: string
+  keyId: string
   keyHash: string
   createdAt?: Date | string
   isActive?: boolean
@@ -588,6 +618,7 @@ export type ApiKeyCreateManyUserInput = {
 export type ApiKeyUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -599,6 +630,7 @@ export type ApiKeyUpdateWithoutUserInput = {
 export type ApiKeyUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -610,6 +642,7 @@ export type ApiKeyUncheckedUpdateWithoutUserInput = {
 export type ApiKeyUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.StringFieldUpdateOperationsInput | string
+  keyId?: Prisma.StringFieldUpdateOperationsInput | string
   keyHash?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -651,6 +684,7 @@ export type ApiKeyCountOutputTypeCountUsageLogsArgs<ExtArgs extends runtime.Type
 export type ApiKeySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   label?: boolean
+  keyId?: boolean
   keyHash?: boolean
   createdAt?: boolean
   isActive?: boolean
@@ -665,6 +699,7 @@ export type ApiKeySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type ApiKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   label?: boolean
+  keyId?: boolean
   keyHash?: boolean
   createdAt?: boolean
   isActive?: boolean
@@ -677,6 +712,7 @@ export type ApiKeySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   label?: boolean
+  keyId?: boolean
   keyHash?: boolean
   createdAt?: boolean
   isActive?: boolean
@@ -689,6 +725,7 @@ export type ApiKeySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type ApiKeySelectScalar = {
   id?: boolean
   label?: boolean
+  keyId?: boolean
   keyHash?: boolean
   createdAt?: boolean
   isActive?: boolean
@@ -697,7 +734,7 @@ export type ApiKeySelectScalar = {
   userId?: boolean
 }
 
-export type ApiKeyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "keyHash" | "createdAt" | "isActive" | "revokedAt" | "keyPreview" | "userId", ExtArgs["result"]["apiKey"]>
+export type ApiKeyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "keyId" | "keyHash" | "createdAt" | "isActive" | "revokedAt" | "keyPreview" | "userId", ExtArgs["result"]["apiKey"]>
 export type ApiKeyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   usageLogs?: boolean | Prisma.ApiKey$usageLogsArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -719,6 +756,7 @@ export type $ApiKeyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     label: string
+    keyId: string
     keyHash: string
     createdAt: Date
     isActive: boolean
@@ -1152,6 +1190,7 @@ export interface Prisma__ApiKeyClient<T, Null = never, ExtArgs extends runtime.T
 export interface ApiKeyFieldRefs {
   readonly id: Prisma.FieldRef<"ApiKey", 'String'>
   readonly label: Prisma.FieldRef<"ApiKey", 'String'>
+  readonly keyId: Prisma.FieldRef<"ApiKey", 'String'>
   readonly keyHash: Prisma.FieldRef<"ApiKey", 'String'>
   readonly createdAt: Prisma.FieldRef<"ApiKey", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"ApiKey", 'Boolean'>

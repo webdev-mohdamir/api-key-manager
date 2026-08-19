@@ -43,6 +43,7 @@ model RefreshToken {
 model ApiKey {
   id        String    @id @default(uuid())
   label     String
+  keyId     String    @unique
   keyHash   String    @unique
   createdAt DateTime  @default(now())
   isActive  Boolean   @default(true)
