@@ -22,6 +22,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "types": ["jest", "node", "express"]
+    "types": ["jest", "node", "express"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types" 
+    ]
   }
 }
