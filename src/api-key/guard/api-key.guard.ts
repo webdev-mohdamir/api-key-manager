@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, Logger, UnauthorizedException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
 import { ApiKeyService } from "../api-key.service";
 import * as bcrypt from 'bcrypt';
@@ -7,8 +7,10 @@ import * as bcrypt from 'bcrypt';
 export class ApiKeyGuard implements CanActivate {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly apiKeyService: ApiKeyService
+    private readonly apiKeyService: ApiKeyService,
   ) { }
+
+   private readonly logger = new Logger(ApiKeyGuard.name);
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
@@ -18,20 +20,22 @@ export class ApiKeyGuard implements CanActivate {
     if (!rawKey) {
       throw new UnauthorizedException('API key required');
     }
-
+    
     const { keyId, keySecret } = this.apiKeyService.parseKey(rawKey);
-
+    
     const row = await this.prisma.apiKey.findFirst({
       where: { keyId, isActive: true },
     });
-
+    
     if (!row) {
+      this.logger.warn(`Invalid API key attempt - keyId: ${keyId}, ip: ${request.ip}`);
       throw new UnauthorizedException('Invalid API key');
     }
 
     const isMatch = await bcrypt.compare(keySecret, row.keyHash);
 
     if (!isMatch) {
+      this.logger.warn(`Invalid API key attempt - keyId: ${keyId}, ip: ${request.ip}`);
       throw new UnauthorizedException('Invalid API key');
     }
 
